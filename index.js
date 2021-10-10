@@ -20,22 +20,21 @@ const app = express();
 // Se despliega CORS en el middleware
 app.use(cors());
 
+// Insertar otro Middleware
+// Para parsear JSON
+app.use(express.json());
+
 // Crear la conexión a la BD
 dbConection();
 
 // Verificando variables de entorno
 // console.log(process.env);
+ 
+//Rutas de la API Proyectos
+app.use('/api/usuarios',require('./routes/usuarios.routes'));
+app.use('/api/login',require('./routes/auth.routes'));
+// app.use('/api/investigadores',require('./routes/investigadores.routes'));
 
-
-// Creando las rutas de mi app
-// A la dirección Raíz
-// Request (GET) y Response
-app.get('/',(req,res)=>{
-    res.json({
-        ok:true,
-        msg: 'Bienvenidos a la App Proyectos'
-    });
-}) 
 
 // Codigo para desplegar el servidor
 // Puerto 3000
